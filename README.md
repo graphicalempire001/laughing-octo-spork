@@ -15,16 +15,25 @@ Next.js 15 (app router). Pages: / (home), /menu, /order, /about, /kids, /contact
 - Branded logo loader with adaptive aromatic steam (thickens as the page really loads, fewer wisps on weak phones), card sliders, 3D yellow buttons with press/pop, steam puff and "shhh" sound (toggle bottom-left).
 - Admin at /admin: add, edit, hide, delete dishes; images auto-converted to WebP; Rand prices.
 
+## Supabase setup (database + image storage)
+1. Create a project at supabase.com.
+2. Dashboard > SQL Editor > New query > paste all of `supabase/schema.sql` > Run. (Safe to re-run.) This creates:
+   - `menu_items` (menu, prices in Rands) with Row Level Security: the public can only read available dishes.
+   - `orders` (copy of every WhatsApp order; locked down, server-only).
+   - the public Storage bucket `menu-images` (WebP only, 5 MB max) and 10 starter dishes.
+3. Dashboard > Project Settings > API: copy the Project URL and the `service_role` key.
+4. On your host set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `NEXT_PUBLIC_SITE_URL`.
+   The service-role key is server-only. Never put it in client code or commit it.
+5. Open /admin, sign in, and edit the starter dishes (names, prices, photos). Uploaded images are converted to WebP and stored in Supabase Storage.
+Orders appear in Table Editor > `orders` (status: new / confirmed / done / cancelled).
+
+Without the Supabase variables the site falls back to local files (`DATA_DIR`, default ./storage) so you can develop offline.
+
 ## Env vars
-ADMIN_PASSWORD, SESSION_SECRET (optional), DATA_DIR (default ./storage), COOKIE_SECURE (set false only for plain-http testing).
+SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET (optional), ADMIN_PASSWORD, SESSION_SECRET (optional), NEXT_PUBLIC_SITE_URL, COOKIE_SECURE (set false only for plain-http testing), DATA_DIR (file fallback only).
 
 ## Hosting
-Menu data and uploads are stored on disk (DATA_DIR). Use a host with a persistent volume (Railway, Render, VPS) and point DATA_DIR at it.
-Vercel's filesystem is read-only: swap lib/store.js for Supabase/Firebase there.
-Existing deployments keep their old menu.json; new seed dishes only appear on a fresh storage folder.
-
-## Replacing a flyer video
-Encode to ~840-960px wide, no audio: `ffmpeg -i in.mp4 -an -vf fps=20,scale=960:-2 -c:v libvpx-vp9 -crf 47 -b:v 0 name.webm` (+ an H.264 `name.mp4` and `name-poster.webp` / `name-end.webp`), and drop them in public/promo.
+With Supabase the app is stateless, so it runs on Vercel, Railway or Render. Build `npm run build`, start `npm start`.
 
 ## SEO & indexing
 - Set `NEXT_PUBLIC_SITE_URL=https://ubuntujollof.com` in your host (default already points there).

@@ -95,6 +95,10 @@ export default function OrderForm() {
           onClick={(e) => {
             if (!valid) { e.preventDefault(); setTouched(true); return; }
             setSent(true);
+            // best-effort copy of the order for the shop's records (never blocks WhatsApp)
+            try {
+              fetch('/api/orders', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name.trim(), mode: type, address: address.trim(), notes: notes.trim(), items: items.map((i) => ({ id: i.id, name: i.name, price: i.price, qty: i.qty })) }) }).catch(() => {});
+            } catch {}
           }}
         >
           💬 Send order on WhatsApp · {money(total)}
