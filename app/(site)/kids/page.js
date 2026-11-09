@@ -2,7 +2,7 @@ import { KidsBlock } from '@/components/Blocks';
 import { site } from '@/data/site';
 import Link from 'next/link';
 
-export const metadata = { title: 'Kids’ Zone — Ubuntu & Jollof', description: 'A supervised play corner at Ubuntu & Jollof, free with any dine-in order.' };
+export const metadata = { title: 'Kids’ Zone', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.', alternates: { canonical: '/kids' }, openGraph: { url: '/kids', title: 'Kids’ Zone | Ubuntu & Jollof', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.' } };
 
 export default function KidsPage() {
   return (

@@ -1,5 +1,14 @@
 const q = encodeURIComponent('4 Paris Avenue, Bordeaux, Randburg, South Africa');
 
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://ubuntujollof.com').replace(/\/$/, '');
+
+export const keywords = [
+  'Ubuntu & Jollof', 'jollof rice Randburg', 'African restaurant Randburg', 'Nigerian food Randburg', 'Nigerian restaurant Bordeaux',
+  'African food Bordeaux Randburg', 'jollof rice delivery Johannesburg', 'native soup and eba Randburg', 'fried yam and egg sauce',
+  'budget friendly meals Randburg', 'pizza Randburg', 'breakfast Randburg', 'bakery Randburg', 'noodles Randburg', 'fast food Randburg',
+  'kids friendly restaurant Randburg', 'order food online Randburg', 'WhatsApp food order Randburg', 'takeaway Randburg', 'Taste of Togetherness',
+];
+
 export const site = {
   name: 'Ubuntu & Jollof',
   tagline: 'Taste of Togetherness',

@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCart } from './CartProvider';
 import { nav } from '@/data/site';
 
@@ -17,6 +17,34 @@ export default function Header() {
   const path = usePathname();
   const { count, bump, setOpen } = useCart();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const openRef = useRef(false);
+  openRef.current = mobileOpen;
+
+  // Smart nav: slides away while you scroll down, slides back the moment you scroll up (or reach the top).
+  useEffect(() => {
+    const root = document.documentElement;
+    let lastY = window.scrollY, ticking = false, acc = 0;
+    const set = (hide) => root.classList.toggle('nav-hidden', hide);
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY, d = y - lastY;
+        lastY = y;
+        if (y < 90 || openRef.current) { set(false); acc = 0; }
+        else {
+          acc = (d > 0) === (acc > 0) ? acc + d : d; // distance in the current direction
+          if (acc > 14) set(true);
+          else if (acc < -8) set(false);
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => { window.removeEventListener('scroll', onScroll); root.classList.remove('nav-hidden'); };
+  }, []);
+  useEffect(() => { if (mobileOpen) document.documentElement.classList.remove('nav-hidden'); }, [mobileOpen]);
+
   const active = (href) => (href === '/' ? path === '/' : path.startsWith(href));
 
   return (

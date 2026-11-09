@@ -5,7 +5,7 @@ import { AboutBlock } from '@/components/Blocks';
 import { WhySlider } from '@/components/Slides';
 import Link from 'next/link';
 
-export const metadata = { title: 'About — Ubuntu & Jollof', description: 'The story behind Ubuntu & Jollof: shared meals, fresh cooking and chefs who care.' };
+export const metadata = { title: 'About Us', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.', alternates: { canonical: '/about' }, openGraph: { url: '/about', title: 'About Us | Ubuntu & Jollof', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.' } };
 
 export default function AboutPage() {
   return (

@@ -515,3 +515,12 @@ video.flyer-img{pointer-events:none}
 .loader p.loader-type{animation:none;min-height:1.6em;margin-top:22px;font-size:1.02rem;white-space:nowrap;}
 .caret{display:inline-block;width:2px;height:1.05em;margin-left:3px;vertical-align:-.15em;background:var(--ink);animation:caretBlink .8s steps(1) infinite;}
 @keyframes caretBlink{50%{opacity:0}}
+
+/* ===== v5: smart nav (slides away on scroll down, back on scroll up) ===== */
+.site-header{transition:transform .38s var(--ease);will-change:transform;}
+html.nav-hidden .site-header{transform:translateY(-125%);}
+.hero{transition:top .38s var(--ease),height .38s var(--ease);}
+html.nav-hidden .hero{top:0;height:100vh;height:100svh;}
+.order-form{transition:top .38s var(--ease);}
+html.nav-hidden .order-form{top:18px;}
+@media(prefers-reduced-motion:reduce){.site-header,.hero,.order-form{transition:none;}}

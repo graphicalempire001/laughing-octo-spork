@@ -1,15 +1,63 @@
 import './globals.css';
 import PressFx from '@/components/PressFx';
 
+import { SITE_URL, keywords, site } from '@/data/site';
+
+const description = 'Ubuntu & Jollof — Taste of Togetherness. Smoky jollof rice, African plates, grills, pizza, breakfast and fresh bakery at 4 Paris Avenue, Bordeaux, Randburg. Budget friendly, in Rands. Order on WhatsApp.';
+
 export const metadata = {
-  title: 'Ubuntu & Jollof — Randburg',
-  description: 'Smoky firewood jollof, grills, pizza, breakfast and bakery at 4 Paris Avenue, Bordeaux, Randburg.',
+  metadataBase: new URL(SITE_URL),
+  title: { default: 'Ubuntu & Jollof | Jollof Rice & African Food in Randburg', template: '%s | Ubuntu & Jollof' },
+  description,
+  keywords,
+  applicationName: 'Ubuntu & Jollof',
+  authors: [{ name: 'Ubuntu & Jollof' }],
+  creator: 'Empire Digitals',
+  category: 'restaurant',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website', locale: 'en_ZA', siteName: 'Ubuntu & Jollof', url: '/',
+    title: 'Ubuntu & Jollof | Taste of Togetherness, Randburg',
+    description,
+    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Ubuntu & Jollof: we have got the best chefs. 4 Paris Avenue, Bordeaux, Randburg.' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Ubuntu & Jollof | Taste of Togetherness', description, images: ['/og.jpg'] },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-video-preview': -1, 'max-snippet': -1 } },
+  formatDetection: { telephone: true, address: true },
+  other: { 'geo.region': 'ZA-GP', 'geo.placename': 'Bordeaux, Randburg, Johannesburg', 'format-detection': 'telephone=yes' },
+};
+
+// Structured data (Google rich results). Opening hours are deliberately left out until confirmed.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Restaurant',
+      '@id': `${SITE_URL}/#restaurant`,
+      name: 'Ubuntu & Jollof',
+      slogan: 'Taste of Togetherness',
+      url: SITE_URL,
+      image: [`${SITE_URL}/og.jpg`, `${SITE_URL}/brand/logo.webp`],
+      logo: `${SITE_URL}/brand/logo.webp`,
+      telephone: site.phoneTel,
+      priceRange: 'R',
+      currenciesAccepted: 'ZAR',
+      servesCuisine: ['African', 'Nigerian', 'Jollof rice', 'Pizza', 'Bakery', 'Chinese', 'Fast food', 'Breakfast'],
+      hasMenu: `${SITE_URL}/menu`,
+      acceptsReservations: false,
+      address: { '@type': 'PostalAddress', streetAddress: '4 Paris Avenue, Bordeaux', addressLocality: 'Randburg', addressRegion: 'Gauteng', addressCountry: 'ZA' },
+      areaServed: 'Randburg, Johannesburg',
+      hasMap: site.mapLink,
+      potentialAction: { '@type': 'OrderAction', target: { '@type': 'EntryPoint', urlTemplate: `${SITE_URL}/order`, actionPlatform: ['http://schema.org/DesktopWebPlatform', 'http://schema.org/MobileWebPlatform'] }, deliveryMethod: ['http://purl.org/goodrelations/v1#DeliveryModeOwnFleet', 'http://purl.org/goodrelations/v1#DeliveryModePickUp'] },
+    },
+    { '@type': 'WebSite', '@id': `${SITE_URL}/#website`, url: SITE_URL, name: 'Ubuntu & Jollof', inLanguage: 'en-ZA', publisher: { '@id': `${SITE_URL}/#restaurant` } },
+  ],
 };
 export const viewport = { width: 'device-width', initialScale: 1, themeColor: '#ffc21a' };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en-ZA">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
@@ -19,6 +67,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
         <PressFx />
       </body>

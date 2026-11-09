@@ -2,7 +2,7 @@ import Flyer from '@/components/Flyer';
 import OrderForm from '@/components/OrderForm';
 import Reveal from '@/components/Reveal';
 
-export const metadata = { title: 'Your order — Ubuntu & Jollof', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp.' };
+export const metadata = { title: 'Your Order', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.', alternates: { canonical: '/order' }, openGraph: { url: '/order', title: 'Your Order | Ubuntu & Jollof', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.' }, robots: { index: false, follow: true } };
 
 export default function OrderPage() {
   return (

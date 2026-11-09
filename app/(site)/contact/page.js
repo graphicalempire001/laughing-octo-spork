@@ -3,7 +3,7 @@ import { LocationBlock } from '@/components/Blocks';
 import Link from 'next/link';
 import { site } from '@/data/site';
 
-export const metadata = { title: 'Contact — Ubuntu & Jollof', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654.' };
+export const metadata = { title: 'Contact & Location', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.', alternates: { canonical: '/contact' }, openGraph: { url: '/contact', title: 'Contact & Location | Ubuntu & Jollof', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.' } };
 
 export default function ContactPage() {
   return (
