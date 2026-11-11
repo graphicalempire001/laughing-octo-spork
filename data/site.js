@@ -1,6 +1,8 @@
 const q = encodeURIComponent('4 Paris Avenue, Bordeaux, Randburg, South Africa');
 
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://ubuntujollof.online').replace(/\/$/, '');
+// The public address is fixed in code on purpose. A leftover NEXT_PUBLIC_SITE_URL on the host (e.g. the old .com) can no longer break link previews.
+// Only set SITE_URL_OVERRIDE if you ever move to a different domain.
+export const SITE_URL = (process.env.SITE_URL_OVERRIDE || 'https://ubuntujollof.online').replace(/\/$/, '');
 
 export const keywords = [
   'Ubuntu & Jollof', 'jollof rice Randburg', 'African restaurant Randburg', 'Nigerian food Randburg', 'Nigerian restaurant Bordeaux',

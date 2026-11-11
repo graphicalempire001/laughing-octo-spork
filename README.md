@@ -22,7 +22,7 @@ Next.js 15 (app router). Pages: / (home), /menu, /order, /about, /kids, /contact
    - `orders` (copy of every WhatsApp order; locked down, server-only).
    - the public Storage bucket `menu-images` (WebP only, 5 MB max) and 10 starter dishes.
 3. Dashboard > Project Settings > API: copy the Project URL and the `service_role` key.
-4. On your host set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `NEXT_PUBLIC_SITE_URL`.
+4. On your host set `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_PASSWORD`, `SESSION_SECRET`, `SITE_URL_OVERRIDE`.
    The service-role key is server-only. Never put it in client code or commit it.
 5. Open /onions, sign in, and edit the starter dishes (names, prices, photos). Uploaded images are converted to WebP and stored in Supabase Storage.
 Orders appear in Table Editor > `orders` (status: new / confirmed / done / cancelled).
@@ -36,13 +36,13 @@ Without the Supabase variables the site falls back to local files (`DATA_DIR`, d
 - **Forgot it?** In Supabase SQL Editor run: `delete from public.admin_settings where key in ('password_hash','session_epoch');` then sign in with `ADMIN_PASSWORD` and set a new one.
 
 ## Env vars
-SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET (optional), ADMIN_PASSWORD, SESSION_SECRET (optional), NEXT_PUBLIC_SITE_URL, COOKIE_SECURE (set false only for plain-http testing), DATA_DIR (file fallback only).
+SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET (optional), ADMIN_PASSWORD, SESSION_SECRET (optional), SITE_URL_OVERRIDE (optional, only if you change domain), COOKIE_SECURE (set false only for plain-http testing), DATA_DIR (file fallback only).
 
 ## Hosting
 With Supabase the app is stateless, so it runs on Vercel, Railway or Render. Build `npm run build`, start `npm start`.
 
 ## SEO & indexing
-- Set `NEXT_PUBLIC_SITE_URL=https://ubuntujollof.online` in your host (default already points there).
+- The site address `https://ubuntujollof.online` is built in. Delete any old `SITE_URL_OVERRIDE` variable on your host (it is ignored now). Only set `SITE_URL_OVERRIDE` if you move domains.
 - Auto-generated: `/sitemap.xml` (pages + image index + video index; new dishes from /onions appear in it), `/robots.txt` (blocks /api and /order; the staff page /onions is noindex and not listed anywhere), `/manifest.webmanifest`.
 - Every page has its own title, description, canonical, Open Graph and Twitter tags; social share image is `public/og-logo.jpg`.
 - Restaurant, Website and Menu structured data (JSON-LD) are included. Opening hours are left out on purpose until confirmed; add them to `app/layout.js` (`openingHoursSpecification`) when sure.

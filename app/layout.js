@@ -19,7 +19,7 @@ export const metadata = {
     type: 'website', locale: 'en_ZA', siteName: 'Ubuntu & Jollof', url: '/',
     title: 'Ubuntu & Jollof | Taste of Togetherness, Randburg',
     description,
-    images: [{ url: '/og-logo.jpg', width: 1200, height: 630, alt: 'Ubuntu & Jollof logo. Taste of Togetherness, Randburg.' }],
+    images: [{ url: '/og-logo.jpg', secureUrl: `${SITE_URL}/og-logo.jpg`, type: 'image/jpeg', width: 1200, height: 630, alt: 'Ubuntu & Jollof logo. Taste of Togetherness, Randburg.' }],
   },
   twitter: { card: 'summary_large_image', title: 'Ubuntu & Jollof | Taste of Togetherness', description, images: ['/og-logo.jpg'] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-video-preview': -1, 'max-snippet': -1 } },
