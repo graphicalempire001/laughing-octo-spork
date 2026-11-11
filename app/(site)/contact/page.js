@@ -1,9 +1,10 @@
+import { OG_IMAGE, ogImages } from '@/data/site';
 import PageBanner from '@/components/PageBanner';
 import { LocationBlock } from '@/components/Blocks';
 import Link from 'next/link';
 import { site } from '@/data/site';
 
-export const metadata = { title: 'Contact & Location', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.', alternates: { canonical: '/contact' }, openGraph: { url: '/contact', title: 'Contact & Location | Ubuntu & Jollof', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.' } };
+export const metadata = { title: 'Contact & Location', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.', alternates: { canonical: '/contact' }, openGraph: { images: ogImages, url: '/contact', title: 'Contact & Location | Ubuntu & Jollof', description: 'Find Ubuntu & Jollof at 4 Paris Avenue, Bordeaux, Randburg. Call or WhatsApp +27 71 064 0654 to order.' }, twitter: { card: 'summary_large_image', images: [OG_IMAGE] } };
 
 export default function ContactPage() {
   return (

@@ -1,8 +1,9 @@
+import { OG_IMAGE, ogImages } from '@/data/site';
 import { KidsBlock } from '@/components/Blocks';
 import { site } from '@/data/site';
 import Link from 'next/link';
 
-export const metadata = { title: 'Kids’ Zone', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.', alternates: { canonical: '/kids' }, openGraph: { url: '/kids', title: 'Kids’ Zone | Ubuntu & Jollof', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.' } };
+export const metadata = { title: 'Kids’ Zone', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.', alternates: { canonical: '/kids' }, openGraph: { images: ogImages, url: '/kids', title: 'Kids’ Zone | Ubuntu & Jollof', description: 'Even the kids can’t hold back. A family friendly corner at Ubuntu & Jollof, Bordeaux, Randburg.' }, twitter: { card: 'summary_large_image', images: [OG_IMAGE] } };
 
 export default function KidsPage() {
   return (

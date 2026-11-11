@@ -4,6 +4,10 @@ const q = encodeURIComponent('4 Paris Avenue, Bordeaux, Randburg, South Africa')
 // Only set SITE_URL_OVERRIDE if you ever move to a different domain.
 export const SITE_URL = (process.env.SITE_URL_OVERRIDE || 'https://ubuntujollof.online').replace(/\/$/, '');
 
+// Link-preview image (the logo). Every page must carry it explicitly: a page's own openGraph replaces the layout's.
+export const OG_IMAGE = '/ubuntu-jollof-logo.jpg';
+export const ogImages = [{ url: OG_IMAGE, width: 1200, height: 630, type: 'image/jpeg', alt: 'Ubuntu & Jollof logo. Taste of Togetherness, Randburg.' }];
+
 export const keywords = [
   'Ubuntu & Jollof', 'jollof rice Randburg', 'African restaurant Randburg', 'Nigerian food Randburg', 'Nigerian restaurant Bordeaux',
   'African food Bordeaux Randburg', 'jollof rice delivery Johannesburg', 'native soup and eba Randburg', 'fried yam and egg sauce',

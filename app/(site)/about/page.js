@@ -1,3 +1,4 @@
+import { OG_IMAGE, ogImages } from '@/data/site';
 import Flyer from '@/components/Flyer';
 import PageBanner from '@/components/PageBanner';
 import Reveal from '@/components/Reveal';
@@ -5,7 +6,7 @@ import { AboutBlock } from '@/components/Blocks';
 import { WhySlider } from '@/components/Slides';
 import Link from 'next/link';
 
-export const metadata = { title: 'About Us', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.', alternates: { canonical: '/about' }, openGraph: { url: '/about', title: 'About Us | Ubuntu & Jollof', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.' } };
+export const metadata = { title: 'About Us', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.', alternates: { canonical: '/about' }, openGraph: { images: ogImages, url: '/about', title: 'About Us | Ubuntu & Jollof', description: 'The story behind Ubuntu & Jollof in Randburg: shared meals, fresh cooking and chefs who care.' }, twitter: { card: 'summary_large_image', images: [OG_IMAGE] } };
 
 export default function AboutPage() {
   return (

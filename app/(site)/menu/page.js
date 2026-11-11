@@ -2,10 +2,10 @@ import Flyer from '@/components/Flyer';
 import MenuSection from '@/components/MenuSection';
 import Reveal from '@/components/Reveal';
 import { getMenu } from '@/lib/store';
-import { SITE_URL } from '@/data/site';
+import { SITE_URL, OG_IMAGE, ogImages } from '@/data/site';
 
 export const dynamic = 'force-dynamic';
-export const metadata = { title: 'Menu: Jollof, African Plates, Pizza & Bakery', description: 'Pizza, breakfast, native soup and eba, jollof, noodles, bakery and fast food in Randburg. Budget friendly, priced in Rands. Order online on WhatsApp.', alternates: { canonical: '/menu' }, openGraph: { url: '/menu', title: 'Menu: Jollof, African Plates, Pizza & Bakery | Ubuntu & Jollof', description: 'Pizza, breakfast, native soup and eba, jollof, noodles, bakery and fast food in Randburg. Budget friendly, priced in Rands. Order online on WhatsApp.' } };
+export const metadata = { title: 'Menu: Jollof, African Plates, Pizza & Bakery', description: 'Pizza, breakfast, native soup and eba, jollof, noodles, bakery and fast food in Randburg. Budget friendly, priced in Rands. Order online on WhatsApp.', alternates: { canonical: '/menu' }, openGraph: { images: ogImages, url: '/menu', title: 'Menu: Jollof, African Plates, Pizza & Bakery | Ubuntu & Jollof', description: 'Pizza, breakfast, native soup and eba, jollof, noodles, bakery and fast food in Randburg. Budget friendly, priced in Rands. Order online on WhatsApp.' }, twitter: { card: 'summary_large_image', images: [OG_IMAGE] } };
 
 export default async function MenuPage({ searchParams }) {
   const { cat } = await searchParams;

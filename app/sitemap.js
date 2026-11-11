@@ -19,7 +19,7 @@ export default async function sitemap() {
   const dishImages = [...new Set(items.map((i) => abs(i.img)).filter(Boolean))];
   const brand = abs('/brand/logo.webp');
   return [
-    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'weekly', priority: 1, images: [brand, abs('/og-logo.jpg'), ...heroImgs],
+    { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'weekly', priority: 1, images: [brand, abs('/ubuntu-jollof-logo.jpg'), ...heroImgs],
       videos: [clip('chef', 'We’ve got the best chefs', 'The Ubuntu and Jollof chefs grilling chicken at 4 Paris Avenue, Bordeaux, Randburg.')] },
     { url: `${SITE_URL}/menu`, lastModified: now, changeFrequency: 'daily', priority: 0.9, images: [...dishImages, abs('/promo/budget-end.webp')],
       videos: [clip('budget', 'Budget friendly yet so satisfying', 'Grilled chicken and jollof rice at Ubuntu and Jollof, Randburg.')] },

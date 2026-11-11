@@ -1,7 +1,7 @@
 import './globals.css';
 import PressFx from '@/components/PressFx';
 
-import { SITE_URL, keywords, site } from '@/data/site';
+import { SITE_URL, OG_IMAGE, ogImages, keywords, site } from '@/data/site';
 
 const description = 'Ubuntu & Jollof — Taste of Togetherness. Smoky jollof rice, African plates, grills, pizza, breakfast and fresh bakery at 4 Paris Avenue, Bordeaux, Randburg. Budget friendly, in Rands. Order on WhatsApp.';
 
@@ -19,9 +19,9 @@ export const metadata = {
     type: 'website', locale: 'en_ZA', siteName: 'Ubuntu & Jollof', url: '/',
     title: 'Ubuntu & Jollof | Taste of Togetherness, Randburg',
     description,
-    images: [{ url: '/og-logo.jpg', secureUrl: `${SITE_URL}/og-logo.jpg`, type: 'image/jpeg', width: 1200, height: 630, alt: 'Ubuntu & Jollof logo. Taste of Togetherness, Randburg.' }],
+    images: ogImages,
   },
-  twitter: { card: 'summary_large_image', title: 'Ubuntu & Jollof | Taste of Togetherness', description, images: ['/og-logo.jpg'] },
+  twitter: { card: 'summary_large_image', title: 'Ubuntu & Jollof | Taste of Togetherness', description, images: [OG_IMAGE] },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-video-preview': -1, 'max-snippet': -1 } },
   formatDetection: { telephone: true, address: true },
   other: { 'geo.region': 'ZA-GP', 'geo.placename': 'Bordeaux, Randburg, Johannesburg', 'format-detection': 'telephone=yes' },
@@ -37,7 +37,7 @@ const jsonLd = {
       name: 'Ubuntu & Jollof',
       slogan: 'Taste of Togetherness',
       url: SITE_URL,
-      image: [`${SITE_URL}/og-logo.jpg`, `${SITE_URL}/brand/logo.webp`],
+      image: [`${SITE_URL}${OG_IMAGE}`, `${SITE_URL}/brand/logo.webp`],
       logo: `${SITE_URL}/brand/logo.webp`,
       telephone: site.phoneTel,
       priceRange: 'R',

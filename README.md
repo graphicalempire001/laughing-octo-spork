@@ -44,6 +44,6 @@ With Supabase the app is stateless, so it runs on Vercel, Railway or Render. Bui
 ## SEO & indexing
 - The site address `https://ubuntujollof.online` is built in. Delete any old `SITE_URL_OVERRIDE` variable on your host (it is ignored now). Only set `SITE_URL_OVERRIDE` if you move domains.
 - Auto-generated: `/sitemap.xml` (pages + image index + video index; new dishes from /onions appear in it), `/robots.txt` (blocks /api and /order; the staff page /onions is noindex and not listed anywhere), `/manifest.webmanifest`.
-- Every page has its own title, description, canonical, Open Graph and Twitter tags; social share image is `public/og-logo.jpg`.
+- Every page has its own title, description, canonical, Open Graph and Twitter tags; social share image is `public/ubuntu-jollof-logo.jpg`.
 - Restaurant, Website and Menu structured data (JSON-LD) are included. Opening hours are left out on purpose until confirmed; add them to `app/layout.js` (`openingHoursSpecification`) when sure.
 - After deploying: add the domain in Google Search Console and submit `https://ubuntujollof.online/sitemap.xml`; claim the Google Business Profile for 4 Paris Avenue, Bordeaux, Randburg.

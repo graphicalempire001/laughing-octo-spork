@@ -1,8 +1,9 @@
+import { OG_IMAGE, ogImages } from '@/data/site';
 import Flyer from '@/components/Flyer';
 import OrderForm from '@/components/OrderForm';
 import Reveal from '@/components/Reveal';
 
-export const metadata = { title: 'Your Order', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.', alternates: { canonical: '/order' }, openGraph: { url: '/order', title: 'Your Order | Ubuntu & Jollof', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.' }, robots: { index: false, follow: true } };
+export const metadata = { title: 'Your Order', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.', alternates: { canonical: '/order' }, openGraph: { images: ogImages, url: '/order', title: 'Your Order | Ubuntu & Jollof', description: 'Review your order and send it to Ubuntu & Jollof on WhatsApp for pickup or delivery in Randburg.' }, twitter: { card: 'summary_large_image', images: [OG_IMAGE] }, robots: { index: false, follow: true } };
 
 export default function OrderPage() {
   return (
