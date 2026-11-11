@@ -29,6 +29,12 @@ Orders appear in Table Editor > `orders` (status: new / confirmed / done / cance
 
 Without the Supabase variables the site falls back to local files (`DATA_DIR`, default ./storage) so you can develop offline.
 
+## Staff password
+- First sign-in uses `ADMIN_PASSWORD` from your host settings.
+- In /onions press **🔑 Password** to change it (current password + new one twice). The new password is stored as a salted scrypt hash in Supabase (`admin_settings`), the env value is then ignored, and every other signed-in device is logged out.
+- If you ran the schema before this feature, run the latest `supabase/schema.sql` again (it adds the `admin_settings` table; safe to re-run).
+- **Forgot it?** In Supabase SQL Editor run: `delete from public.admin_settings where key in ('password_hash','session_epoch');` then sign in with `ADMIN_PASSWORD` and set a new one.
+
 ## Env vars
 SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SUPABASE_BUCKET (optional), ADMIN_PASSWORD, SESSION_SECRET (optional), NEXT_PUBLIC_SITE_URL, COOKIE_SECURE (set false only for plain-http testing), DATA_DIR (file fallback only).
 

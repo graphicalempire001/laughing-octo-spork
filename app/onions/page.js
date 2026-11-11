@@ -31,6 +31,10 @@ export default function Admin() {
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState(null);
   const formRef = useRef(null);
+  const [pwOpen, setPwOpen] = useState(false);
+  const [pw, setPw] = useState({ current: '', next: '', again: '' });
+  const [pwShow, setPwShow] = useState(false);
+  const [pwErr, setPwErr] = useState('');
 
   const say = useCallback((text, bad = false) => {
     setToast({ text, bad });
@@ -62,6 +66,18 @@ export default function Admin() {
     setBusy(false);
     if (r.ok) { setAuthed(true); setPassword(''); load(); }
     else say(j.error || 'Could not sign in.', true);
+  }
+  async function changePassword(e) {
+    e.preventDefault();
+    setPwErr('');
+    if (pw.next !== pw.again) return setPwErr('The two new passwords do not match.');
+    setBusy(true);
+    const r = await fetch('/api/onions/password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ current: pw.current, next: pw.next }) });
+    const j = await r.json().catch(() => ({}));
+    setBusy(false);
+    if (r.ok) { setPwOpen(false); setPw({ current: '', next: '', again: '' }); say('Password changed. Other devices were signed out.'); }
+    else if (r.status === 401) { setAuthed(false); }
+    else setPwErr(j.error || 'Could not change the password.');
   }
   async function logout() {
     await fetch('/api/onions/logout', { method: 'POST' });
@@ -151,6 +167,7 @@ export default function Admin() {
         <div className="logo">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="logo-img" src="/brand/logo.webp" alt="Ubuntu & Jollof" width="62" height="48" /><div className="logo-name">Menu admin</div></div>
         <div className="adm-top-btns">
           <a className="btn white sm" href="/" target="_blank" rel="noopener noreferrer">View site</a>
+          <button className="btn white sm" onClick={() => { setPwErr(''); setPwOpen(true); }}>🔑 Password</button>
           <button className="btn dark sm" onClick={logout}>Log out</button>
         </div>
       </header>
@@ -227,6 +244,30 @@ export default function Admin() {
           </div>
         </section>
       </div>
+      {pwOpen && (
+        <div className="adm-modal" role="dialog" aria-modal="true" aria-label="Change password" onClick={(e) => { if (e.target === e.currentTarget) setPwOpen(false); }}>
+          <form className="adm-card adm-pwbox" onSubmit={changePassword}>
+            <h2 className="heading">Change password</h2>
+            <p className="adm-muted adm-small">Pick something long that only you know. Changing it signs out every other device.</p>
+            <label className="adm-label">Current password
+              <input className="adm-input" type={pwShow ? 'text' : 'password'} autoComplete="current-password" value={pw.current} onChange={(e) => setPw({ ...pw, current: e.target.value })} required autoFocus />
+            </label>
+            <label className="adm-label">New password
+              <input className="adm-input" type={pwShow ? 'text' : 'password'} autoComplete="new-password" minLength={10} value={pw.next} onChange={(e) => setPw({ ...pw, next: e.target.value })} required />
+            </label>
+            <label className="adm-label">Repeat new password
+              <input className="adm-input" type={pwShow ? 'text' : 'password'} autoComplete="new-password" minLength={10} value={pw.again} onChange={(e) => setPw({ ...pw, again: e.target.value })} required />
+            </label>
+            <label className="adm-check"><input type="checkbox" checked={pwShow} onChange={(e) => setPwShow(e.target.checked)} /> Show passwords</label>
+            <p className="adm-muted adm-small">At least 10 characters with letters and numbers (or 14+ characters).</p>
+            {pwErr && <p className="form-error" role="alert">{pwErr}</p>}
+            <div className="adm-pwbtns">
+              <button type="button" className="btn white sm" onClick={() => setPwOpen(false)}>Cancel</button>
+              <button type="submit" className="btn sm" disabled={busy}>{busy ? 'Saving…' : 'Save new password'}</button>
+            </div>
+          </form>
+        </div>
+      )}
       {toast && <div className={`adm-toast${toast.bad ? ' bad' : ''}`}>{toast.text}</div>}
     </main>
   );

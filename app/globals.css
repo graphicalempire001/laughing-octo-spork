@@ -550,3 +550,9 @@ html.nav-hidden .order-form{top:18px;}
 .nf-help{font-size:.92rem;color:#5b4a35;}
 .nf-help a{font-weight:800;color:var(--ink,#241a10);text-decoration:underline;}
 @media(prefers-reduced-motion:reduce){.nf-logo,.nf-bowl,.nf-steam i{animation:none}}
+
+/* ===== staff: change-password dialog ===== */
+.adm-modal{position:fixed;inset:0;z-index:500;background:rgba(36,26,16,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto;animation:pop .25s var(--ease);}
+.adm-pwbox{width:100%;max-width:440px;display:grid;gap:12px;}
+.adm-pwbox .adm-check{margin:0;}
+.adm-pwbtns{display:flex;gap:10px;justify-content:flex-end;margin-top:4px;}

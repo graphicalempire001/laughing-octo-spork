@@ -61,6 +61,16 @@ create index if not exists orders_created_idx on public.orders (created_at desc)
 -- Locked down completely: only the server (service role) can insert or read orders.
 alter table public.orders enable row level security;
 
+-- ---------- 2b. Staff settings (hashed password + session epoch, written by the dashboard's "Change password") ----------
+create table if not exists public.admin_settings (
+  key        text primary key,
+  value      text not null,
+  updated_at timestamptz not null default now()
+);
+alter table public.admin_settings enable row level security;   -- no policies: only the server (service role) can touch it
+-- FORGOT YOUR PASSWORD?  Run this one line, then sign in with the ADMIN_PASSWORD set on your host:
+--   delete from public.admin_settings where key in ('password_hash', 'session_epoch');
+
 -- ---------- 3. Image storage (public bucket, WebP only) ----------
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('menu-images', 'menu-images', true, 5242880, array['image/webp'])
