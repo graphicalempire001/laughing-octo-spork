@@ -34,7 +34,7 @@ create trigger menu_items_updated_at before update on public.menu_items
 for each row execute function public.set_updated_at();
 
 -- Row Level Security: the public can only READ dishes that are available.
--- All writes go through the website's /admin API using the service-role key (which bypasses RLS).
+-- All writes go through the website's /onions API using the service-role key (which bypasses RLS).
 alter table public.menu_items enable row level security;
 
 drop policy if exists "Public can read available dishes" on public.menu_items;
@@ -74,7 +74,7 @@ create policy "Public can view menu images"
   using (bucket_id = 'menu-images');
 -- (no insert/update/delete policies: uploads happen server-side with the service-role key)
 
--- ---------- 4. Starter dishes (placeholders - rename/re-price them in /admin) ----------
+-- ---------- 4. Starter dishes (placeholders - rename/re-price them in /onions) ----------
 insert into public.menu_items (id, name, description, price, category, tag, available, img, sort_order) values
   ('seed-yam-egg',      'Fried Yam & Egg Sauce',          'Golden fried yam with spicy egg sauce, peppers and crispy fried fish.',                      79, 'Breakfast', 'Local favourite', true, '/menu/yam-egg.webp',      1),
   ('seed-native-soup',  'Native Soup with Eba',           'Rich native soup with greens, assorted meat and ponmo, served with a soft ball of eba.',    109, 'African',    'Chef''s Pick',    true, '/menu/native-soup.webp',  2),

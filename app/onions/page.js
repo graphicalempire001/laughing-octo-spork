@@ -43,7 +43,7 @@ export default function Admin() {
   }, []);
 
   useEffect(() => {
-    fetch('/api/admin/session', { cache: 'no-store' })
+    fetch('/api/onions/session', { cache: 'no-store' })
       .then((r) => r.json())
       .then((j) => {
         setAuthed(!!j.ok);
@@ -57,14 +57,14 @@ export default function Admin() {
   async function login(e) {
     e.preventDefault();
     setBusy(true);
-    const r = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
+    const r = await fetch('/api/onions/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
     const j = await r.json().catch(() => ({}));
     setBusy(false);
     if (r.ok) { setAuthed(true); setPassword(''); load(); }
     else say(j.error || 'Could not sign in.', true);
   }
   async function logout() {
-    await fetch('/api/admin/logout', { method: 'POST' });
+    await fetch('/api/onions/logout', { method: 'POST' });
     setAuthed(false);
   }
 

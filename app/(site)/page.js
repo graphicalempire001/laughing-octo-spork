@@ -8,7 +8,7 @@ import { CategorySlider, StepsSlider } from '@/components/Slides';
 import { site } from '@/data/site';
 import { getMenu } from '@/lib/store';
 
-export const dynamic = 'force-dynamic'; // menu edits in /admin show up immediately
+export const dynamic = 'force-dynamic'; // menu edits in /onions show up immediately
 
 export default async function Home() {
   const items = (await getMenu()).filter((i) => i.available !== false);

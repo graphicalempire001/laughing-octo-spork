@@ -33,7 +33,6 @@ export default function Footer() {
       </div>
       <div className="copyright">
         © 2026 Ubuntu &amp; Jollof. All Rights Reserved. · I am because we are.
-        <a className="admin-link" href="/admin" data-nofx>Staff</a>
       </div>
     </footer>
   );
